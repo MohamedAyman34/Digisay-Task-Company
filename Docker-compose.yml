@@ -1,0 +1,23 @@
+
+# docker-compose.yml
+version: '3'
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres_db
+
+  postgres_db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=category
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=mohamed2001

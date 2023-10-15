@@ -1,0 +1,44 @@
+<div id="refresh">
+ <form method="post" id='category_form' action="{% url 'category:category_list' %}">
+    {% csrf_token %}
+    {% for category in categories %}
+      <div class="form-check" id='categories_list'>  
+          <input class="form-check-input" onchange="submit()" id='add_category' type="checkbox" value="{{category.id}}" name="category_id">
+          <label class="form-check-label"  >{{category.parent_category}}</label>
+      </div>
+      {% endfor %}
+  </form> 
+
+</div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+  
+  <script>
+    $(document).ready(function(e){
+      $(document).on('change','#category_form',function(e) {
+
+      /*
+      e.preventDefault(); 
+      $.ajax({
+        type: $(this).attr('method'),
+        url : $(this).attr('action'),
+        data: $(this).serialize(),
+        dataType:'json',
+        sucsses:function(response){
+          console.log('add sub categories')
+          $('#refresh').html(response['result'])
+
+        },
+        error:function(err){
+          console.log(err)
+        }
+      }) 
+*/
+    });
+      })
+  </script> 
+  
+
+  
